@@ -173,3 +173,9 @@ Route::post('mock-add-trip', function(Request $request) {
         'miles' => 'required|numeric'
     ]);
 })->middleware('auth:api');
+
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/trips', [\App\Http\Controllers\TripController::class, 'index']);
+
+});

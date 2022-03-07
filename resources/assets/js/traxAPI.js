@@ -15,7 +15,7 @@ let traxAPI = {
         return '/api/mock-delete-car' + '/' + id;
     },
     getTripsEndpoint() {
-        return '/api/mock-get-trips';
+        return '/api/trips';
     },
     addTripEndpoint() {
         return 'api/mock-add-trip'
