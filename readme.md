@@ -16,7 +16,7 @@ The front-end of the application has already been developed and consists of the 
 - Ability for a logged in user to add a car to Trax
 - Ability for a logged in user to remove a car from Trax
 - Ability for a logged in user to view a list of all their cars
-- Ability for a logged in user to add a trip to Trax specifying which car was used.
+- Ability for a logged in user to add a trip to Trax specifying which car was used.116,00
 - Ability for a logged in user to a view a list of all their trips
 
 The frontend of the application currently makes requests to a set of mock endpoints implemented in-line in

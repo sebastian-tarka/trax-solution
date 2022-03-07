@@ -177,5 +177,9 @@ Route::post('mock-add-trip', function(Request $request) {
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/trips', [\App\Http\Controllers\TripController::class, 'index']);
-
+    Route::post('/trips', [\App\Http\Controllers\TripController::class, 'store']);
+    Route::get('/cars', [\App\Http\Controllers\CarController::class, 'index']);
+    Route::post('/cars', [\App\Http\Controllers\CarController::class, 'store']);
+    Route::get('/cars/{id}', [\App\Http\Controllers\CarController::class, 'show']);
+    Route::delete('/cars/{id}', [\App\Http\Controllers\CarController::class, 'destroy']);
 });
