@@ -32,8 +32,6 @@ class CarRepository implements Repository
 
         }
 
-
-//        dd($data->toArray());
         return $data;
     }
 

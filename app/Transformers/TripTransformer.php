@@ -8,13 +8,24 @@ use Illuminate\Support\Carbon;
 
 class TripTransformer extends AbstractTransformer implements Transformer
 {
+    /**
+     * @var Transformer
+     */
     private $carTransformer;
 
+    /**
+     * TripTransformer constructor.
+     * @param Transformer $carTransformer
+     */
     public function __construct(Transformer $carTransformer)
     {
         $this->carTransformer = $carTransformer;
     }
 
+    /**
+     * @param $item
+     * @return array
+     */
     public function transform($item): array
     {
         $car = $item['car'];

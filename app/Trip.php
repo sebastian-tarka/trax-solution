@@ -23,6 +23,8 @@ class Trip extends Model
      */
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::createFromTimeString($value)->toDateString();
+        !is_object($value) ?
+        $this->attributes['date'] = Carbon::createFromTimeString($value)->toDateString() :
+        $this->attributes['date'] = $value->format('Y-m-d h:m:s');
     }
 }

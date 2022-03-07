@@ -6,6 +6,10 @@ namespace App\Transformers;
 
 class CarTransformer extends AbstractTransformer implements Transformer
 {
+    /**
+     * @param $item
+     * @return array
+     */
     public function transform($item): array
     {
         return [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Repository;
 use App\Transformers\Transformer;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,8 +16,16 @@ class TripController extends ApiController
      */
     private $repository;
 
+    /**
+     * @var Transformer
+     */
     private $transformer;
 
+    /**
+     * TripController constructor.
+     * @param Repository $repository
+     * @param Transformer $transformer
+     */
     public function __construct(Repository $repository, Transformer $transformer)
     {
         $this->repository = $repository;
@@ -26,7 +35,7 @@ class TripController extends ApiController
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         $data = $this->repository->getAllByUserId(auth()->user()->id);
 
@@ -35,7 +44,11 @@ class TripController extends ApiController
         ]);
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request): JsonResponse
     {
 
         $params = $request->all();

@@ -10,14 +10,24 @@ use Illuminate\Support\Collection;
 
 class TripRepository implements Repository
 {
-
+    /**
+     * @var Trip
+     */
     private $tripModel;
 
+    /**
+     * TripRepository constructor.
+     * @param Trip $tripModel
+     */
     public function __construct(Trip $tripModel)
     {
         $this->tripModel = $tripModel;
     }
 
+    /**
+     * @param $id
+     * @return Collection
+     */
     public function getAllByUserId($id): Collection
     {
         $data = $this->tripModel->with(['car'])->where('user_id', $id)->get();
@@ -32,6 +42,9 @@ class TripRepository implements Repository
         return $data;
     }
 
+    /**
+     * @param $payload
+     */
     public function store($payload): void
     {
         $this->tripModel->create($payload);

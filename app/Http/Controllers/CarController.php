@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Repository;
 use App\Transformers\Transformer;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,12 +21,20 @@ class CarController extends ApiController
      */
     private $transformer;
 
+    /**
+     * CarController constructor.
+     * @param Repository $repository
+     * @param Transformer $transformer
+     */
     public function __construct(Repository $repository, Transformer $transformer)
     {
         $this->repository = $repository;
         $this->transformer = $transformer;
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         $data = $this->repository->getAllByUserId(auth()->user()->id);
@@ -35,7 +44,11 @@ class CarController extends ApiController
         ]);
     }
 
-    public function show($id)
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id): \Illuminate\Http\JsonResponse
     {
         $data = $this->repository->getById($id, auth()->user()->id);
 
@@ -44,13 +57,21 @@ class CarController extends ApiController
         ]);
     }
 
-    public function destroy($id)
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id): JsonResponse
     {
         $this->repository->deleteById($id);
         return $this->setStatusCode(204)->respond(['status' => 'success']);
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request): JsonResponse
     {
 
         $params = $request->all();
@@ -71,6 +92,10 @@ class CarController extends ApiController
         return $this->setStatusCode(201)->respond(['status' => 'success']);
     }
 
+    /**
+     * @param array $payload
+     * @return array
+     */
     private function makePayload(array $payload): array
     {
         return [
